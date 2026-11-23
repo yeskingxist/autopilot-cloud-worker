@@ -4,10 +4,16 @@ import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-TARGET_URL = os.environ.get(
-    "TARGET_URL",
-    "https://zerotoherostoriess.blogspot.com/2026/11/from-five-hour-bus-rides-to-egyptian.html"
-)
+TARGET_URLS = [
+    "https://zerotoherostoriess.blogspot.com/2026/11/from-five-hour-bus-rides-to-egyptian.html",
+    "https://zerotoherostoriess.blogspot.com/2026/11/he-lost-70-billion-then-came-back.html",
+    "https://zerotoherostoriess.blogspot.com/2026/11/from-two-room-flat-in-chennai-to-top-of.html",
+    "https://zerotoherostoriess.blogspot.com/2026/11/from-bomb-shelters-to-24-grand-slams.html",
+    "https://zerotoherostoriess.blogspot.com/2026/11/he-washed-dishes-for-120-hour-then.html",
+    "https://zerotoherostoriess.blogspot.com/2026/11/sent-to-orphanage-at-seven-then-he.html",
+]
+
+TARGET_URL = os.environ.get("TARGET_URL", "")
 
 TOTAL_LOOPS = int(os.environ.get("LOOPS_PER_RUN", "25"))
 MIN_DWELL = int(os.environ.get("MIN_DWELL", "15"))
@@ -109,8 +115,9 @@ def run_single_loop(loop_idx: int) -> bool:
             "source": STEALTH_JS
         })
 
-        print(f"[NAVIGATING] {TARGET_URL}")
-        driver.get(TARGET_URL)
+        chosen_url = TARGET_URL if TARGET_URL else random.choice(TARGET_URLS)
+        print(f"[NAVIGATING] {chosen_url}")
+        driver.get(chosen_url)
         time.sleep(2.0)
         print(f"[LOADED] Title: {driver.title[:45] if driver.title else 'Active'}")
 
@@ -120,6 +127,19 @@ def run_single_loop(loop_idx: int) -> bool:
         print(f"[HUMAN_SCROLL] Traversing with easeInOutCubic (Dwell: {dwell_time}s)...")
 
         while time.time() < end_time:
+            # Random natural reader pause & focus
+            if random.random() < 0.25:
+                try:
+                    driver.execute_script("""
+                        const paras = document.querySelectorAll('.post-body p, article p, p');
+                        if (paras.length > 0) {
+                            const target = paras[Math.floor(Math.random() * paras.length)];
+                            target.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+                        }
+                    """)
+                except Exception:
+                    pass
+
             curr_y = driver.execute_script("return window.scrollY;")
             page_h = driver.execute_script("return document.body.scrollHeight;")
             win_h = driver.execute_script("return window.innerHeight;")
