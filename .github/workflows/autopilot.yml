@@ -12,6 +12,10 @@ on:
 jobs:
   run-automation:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        worker: [1, 2, 3, 4, 5, 6]
     timeout-minutes: 25
 
     steps:
@@ -30,7 +34,6 @@ jobs:
 
       - name: Run AutoPilot Deep Scroll Engine
         env:
-          TARGET_URL: "https://zerotoherostoriess.blogspot.com/2026/11/from-five-hour-bus-rides-to-egyptian.html"
           LOOPS_PER_RUN: "25"
           MIN_DWELL: "15"
           MAX_DWELL: "30"
