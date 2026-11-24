@@ -5,10 +5,10 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 TARGET_URLS = [
-    "https://zerotoherostoriess.blogspot.com/2026/11/from-five-hour-bus-rides-to-egyptian.html",
-    "https://zerotoherostoriess.blogspot.com/2026/11/he-lost-70-billion-then-came-back.html",
-    "https://zerotoherostoriess.blogspot.com/2026/11/from-two-room-flat-in-chennai-to-top-of.html",
-    "https://zerotoherostoriess.blogspot.com/2026/11/from-bomb-shelters-to-24-grand-slams.html",
+    "https://uplcm.com/4/12339530",
+    "https://uplcm.com/4/12241217",
+    "https://uplcm.com/4/12339529",
+    "https://uplcm.com/4/12339528",
     "https://zerotoherostoriess.blogspot.com/2026/11/he-washed-dishes-for-120-hour-then.html",
     "https://zerotoherostoriess.blogspot.com/2026/11/sent-to-orphanage-at-seven-then-he.html",
 ]
