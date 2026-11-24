@@ -15,8 +15,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        worker: [1, 2, 3, 4, 5, 6]
-    timeout-minutes: 25
+        worker: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    timeout-minutes: 35
 
     steps:
       - name: Checkout Code
@@ -34,8 +34,8 @@ jobs:
 
       - name: Run AutoPilot Deep Scroll Engine
         env:
-          LOOPS_PER_RUN: "25"
-          MIN_DWELL: "15"
-          MAX_DWELL: "30"
+          LOOPS_PER_RUN: "40"
+          MIN_DWELL: "12"
+          MAX_DWELL: "20"
         run: |
           python cloud_runner.py
