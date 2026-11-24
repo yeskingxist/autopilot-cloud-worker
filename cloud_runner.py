@@ -15,9 +15,9 @@ TARGET_URLS = [
 
 TARGET_URL = os.environ.get("TARGET_URL", "")
 
-TOTAL_LOOPS = int(os.environ.get("LOOPS_PER_RUN", "25"))
-MIN_DWELL = int(os.environ.get("MIN_DWELL", "15"))
-MAX_DWELL = int(os.environ.get("MAX_DWELL", "30"))
+TOTAL_LOOPS = int(os.environ.get("LOOPS_PER_RUN", "40"))
+MIN_DWELL = int(os.environ.get("MIN_DWELL", "12"))
+MAX_DWELL = int(os.environ.get("MAX_DWELL", "20"))
 
 STEALTH_JS = """
 (function() {
